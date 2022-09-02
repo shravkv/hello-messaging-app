@@ -1,7 +1,6 @@
 package dto;
 
 import org.springframework.web.bind.annotation.*;
-import com.bridgelabz.hellomessagingapp.controller.dto.User;
 
 @RestController
 @RequestMapping("/hello")
@@ -27,9 +26,20 @@ public class HelloMessagingAppController {
         return "Hello" + user.getFirstName() + " " + user.getLastName() +"!";
     }
 
+
     @PostMapping("/post")
     public String addUserRequestParam(@RequestParam String firstName, @RequestParam String lastName) {
         User user = new User();
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        return user.toString();
+    }
+
+    @PutMapping("/updated")
+    public String update(@RequestParam String firstName, @RequestParam String lastName) {
+        User user = new User();
+        user.setFirstName("Vishangi");
+        user.setLastName("Dabir");
         user.setFirstName(firstName);
         user.setLastName(lastName);
         return user.toString();
